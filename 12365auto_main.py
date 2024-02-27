@@ -24,23 +24,22 @@ headerinfo = {
 }
 
 OEM_list = {"长安":"15","福特":"26","深蓝":"758"}
-Page_number = "1"
 print(OEM_list.keys())
 OEM_name = input('Please input only One (1) OEM Name listed above: \n')
 Vehicle_brand_list = \
     {"深蓝":{"深蓝SL03":"3375"},\
      "福特":{"EVOS":"3205"},\
         }
-print('\n您选择的OEM有下列车型：\n')
+print('\n您选择的OEM有下列车型：')
 print(Vehicle_brand_list[OEM_name].keys())
-print('\n')
 vehicle_brand = input('Please enter One (1) vehicle brand listed above: \n')
+Page_number = input('Please enter a page number, default = 1 : \n' )  or '1'
 claim_url = "https://www.12365auto.com/zlts/{}-{}-0-0-0-0_0-0-0-0-0-0-0-{}.shtml".format\
     (OEM_list[OEM_name],\
     Vehicle_brand_list[OEM_name][vehicle_brand],\
     Page_number)
 
-print('Warranty Claim Url: {}: '.format(claim_url) + '\n')
+print('Page Number: {},  Warranty Claim Url: {}: '.format(Page_number,claim_url) + '\n')
 try:
     res = requests.get(claim_url,headers=headerinfo,verify=False,timeout=5) #download above page, send it to res.
 except:
@@ -70,14 +69,18 @@ for i in range(1,claim_number_this_page,1):
 outp = DataFrame(table_output_page,columns=columnNames)
 print(outp)
 outp.to_csv('{}_{}.csv'.format(OEM_name,vehicle_brand),mode='a',header=1, index=0, encoding='utf_8_sig')
-print('Complete Export Warranty Claim Url: {}: '.format(claim_url) + '\n')
+print('Complete Export Page Number: {},  Warranty Claim Url: {}: '.format(Page_number,claim_url) + '\n')
 
 if len(bs4.BeautifulSoup(res.content,'lxml').select('.p_page')) != 0:
     last_page_link = bs4.BeautifulSoup(res.content,'lxml').select('.p_page')[0].contents[-1].attrs['href']
     last_page_number = last_page_link.split('-')[-1].split('.')[0]
 
-    for Page_number in range(2,int(last_page_number),1):
-        print('Warranty Claim Url: {}: '.format(claim_url) + '\n')
+    for Page_number in range(Page_number+1,int(last_page_number),1):
+        claim_url = "https://www.12365auto.com/zlts/{}-{}-0-0-0-0_0-0-0-0-0-0-0-{}.shtml".format\
+            (OEM_list[OEM_name],\
+            Vehicle_brand_list[OEM_name][vehicle_brand],\
+            Page_number)
+        print('Page Number: {},  Warranty Claim Url: {}: '.format(Page_number,claim_url) + '\n')
         try:
             res = requests.get(claim_url,headers=headerinfo,verify=False,timeout=5) #download above page, send it to res.
         except:
@@ -106,6 +109,6 @@ if len(bs4.BeautifulSoup(res.content,'lxml').select('.p_page')) != 0:
         outp = DataFrame(table_output_page,columns=columnNames)
         print(outp)
         outp.to_csv('{}_{}.csv'.format(OEM_name,vehicle_brand),mode='a',header=0, index=0, encoding='utf_8_sig')
-        print('Complete Export Warranty Claim Url: {}: '.format(claim_url) + '\n')
+        print('Complete Export Page Number: {},  Warranty Claim Url: {}: '.format(Page_number,claim_url) + '\n')
 else:
     print('Complete Export')
