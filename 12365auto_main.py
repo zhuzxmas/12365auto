@@ -126,4 +126,4 @@ if len(bs4.BeautifulSoup(res.content,'lxml').select('.p_page')) != 0:
     input('Export File is in the same directory as this exe file. \nPress Any key to exit ~~')
 else:
     print('Complete Export')
-    input('Export File is in the same directory as this exe file. \nPress Any key to exit ~~')
+    input('Export File is in the same directory as this exe file. \nPress Any key and Enter to exit ~~')
