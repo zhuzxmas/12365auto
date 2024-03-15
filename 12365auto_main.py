@@ -123,7 +123,7 @@ if len(bs4.BeautifulSoup(res.content,'lxml').select('.p_page')) != 0:
         outp = DataFrame(table_output_page,columns=columnNames)
         print(outp)
         outp.to_csv('{}_{}.csv'.format(OEM_name,vehicle_brand_name),mode='a',header=0, index=0, encoding='utf_8_sig')
-        print('Complete Export Page Number: {},  Warranty Claim Url: {}: '.format(str(Page_number),claim_url) + '\n')
+        print('Complete Export Page Number: {}/{},  Warranty Claim Url: {}: '.format(str(Page_number),last_page_number,claim_url) + '\n')
     input('Export File is in the same directory as this exe file. \nPress Any key to exit ~~')
 else:
     print('Complete Export')
