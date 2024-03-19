@@ -49,7 +49,7 @@ claim_url = "https://www.12365auto.com/zlts/{}-{}-0-0-0-0_0-0-0-0-0-0-0-{}.shtml
 
 print('Page Number: {},  Warranty Claim Url: {}: '.format(Page_number,claim_url) + '\n')
 try:
-    res = requests.get(claim_url,headers=headerinfo,verify=False,timeout=10) #download above page, send it to res.
+    res = requests.get(claim_url,headers=headerinfo,verify=False,timeout=10) #download above page, send it to res..
 except:
     with open(r'./_internal/pacfile') as f: #for this line, it is used for pyinstaller to compile an .exe file.
     # with open(r'./pacfile') as f: #for this line, it is used for python normal usage.
