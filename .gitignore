@@ -1,2 +1,5 @@
 pacfile
 *.csv
+/12365/
+/build/
+/dist/
