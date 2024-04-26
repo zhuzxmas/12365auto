@@ -47,7 +47,7 @@ for cate_i in range(0,len(category_list)):
     for cate_j in range(0,len(category_list[cate_i]['items'])):
         cate_keyB = category_list[cate_i]['items'][cate_j]['id']
         cate_keyAB = str(cate_keyA) + str(cate_keyB)
-        cate_value = category_list[cate_i]['name'] + '-' + category_list[cate_i]['items'][cate_j]['title'] + ';'
+        cate_value = category_list[cate_i]['name'] + '-' + category_list[cate_i]['items'][cate_j]['title']
         category_list_new[cate_keyAB] = cate_value
 
 ### 1st OEM Name ###
