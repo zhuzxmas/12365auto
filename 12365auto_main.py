@@ -12,7 +12,7 @@ from pypac.parser import PACFile
 from pandas import DataFrame
 
 print('###=========================================### \n')
-print('### 12365auto Version 0.03   last updated: 2024-04-26 ### \n')
+print('### 12365auto Version 0.04   last updated: 2024-04-26 ### \n')
 print('###=========================================### \n')
 
 # This is the header infomation.
@@ -98,24 +98,25 @@ if yis_number == '0':
 
         table_output_page = []
         for i in range(1,claim_number_this_page,1):
-            table_output = []
-            table_output.append(Page_number) # page number
-            table_output.append(table_result[i].contents[0].getText()) #投诉编号
-            table_output.append(table_result[i].contents[1].getText()) #投诉品牌
-            table_output.append(table_result[i].contents[2].getText()) #投诉车系
-            table_output.append(table_result[i].contents[3].getText()) #投诉车型
-            table_output.append(table_result[i].contents[4].getText()) #问题简述标题
-            table_output.append('=hyperlink("{}")'.format(table_result[i].contents[4].contents[0].attrs['href'].replace('//', 'https://'))) #问题简述链接
-            table_output.append(YIS_duration[yis_i]) #问题出现时间
 
             issue_cate = table_result[i].contents[5].getText().split(',')
-            issue_cate_value = ''
             for issue_cate_i in range(0,len(issue_cate)):
-                issue_cate_value = issue_cate_value + category_list_new[issue_cate[issue_cate_i]]
-            table_output.append(issue_cate_value) #问题类型
-            table_output.append(table_result[i].contents[6].getText()) #投诉时间
-            table_output.append(table_result[i].contents[7].getText()) #投诉状态
-            table_output_page.append(table_output)
+                issue_cate_value = category_list_new[issue_cate[issue_cate_i]]
+
+                table_output = []
+                table_output.append(Page_number) # page number
+                table_output.append(table_result[i].contents[0].getText()) #投诉编号
+                table_output.append(table_result[i].contents[1].getText()) #投诉品牌
+                table_output.append(table_result[i].contents[2].getText()) #投诉车系
+                table_output.append(table_result[i].contents[3].getText()) #投诉车型
+                table_output.append(table_result[i].contents[4].getText()) #问题简述标题
+                table_output.append('=hyperlink("{}")'.format(table_result[i].contents[4].contents[0].attrs['href'].replace('//', 'https://'))) #问题简述链接
+                table_output.append(YIS_duration[yis_i]) #问题出现时间
+
+                table_output.append(issue_cate_value) #问题类型
+                table_output.append(table_result[i].contents[6].getText()) #投诉时间
+                table_output.append(table_result[i].contents[7].getText()) #投诉状态
+                table_output_page.append(table_output)
 
         outp = DataFrame(table_output_page,columns=columnNames)
         print(outp)
@@ -149,24 +150,24 @@ if yis_number == '0':
 
                     table_output_page = []
                     for i in range(1,claim_number_this_page,1):
-                        table_output = []
-                        table_output.append(Page_number) # page number
-                        table_output.append(table_result[i].contents[0].getText()) #投诉编号
-                        table_output.append(table_result[i].contents[1].getText()) #投诉品牌
-                        table_output.append(table_result[i].contents[2].getText()) #投诉车系
-                        table_output.append(table_result[i].contents[3].getText()) #投诉车型
-                        table_output.append(table_result[i].contents[4].getText()) #问题简述标题
-                        table_output.append('=hyperlink("{}")'.format(table_result[i].contents[4].contents[0].attrs['href'].replace('//', 'https://')))#问题简述链接
-                        table_output.append(YIS_duration[yis_i]) #问题出现时间
-
                         issue_cate = table_result[i].contents[5].getText().split(',')
-                        issue_cate_value = ''
                         for issue_cate_i in range(0,len(issue_cate)):
-                            issue_cate_value = issue_cate_value + category_list_new[issue_cate[issue_cate_i]]
-                        table_output.append(issue_cate_value) #问题类型
-                        table_output.append(table_result[i].contents[6].getText()) #投诉时间
-                        table_output.append(table_result[i].contents[7].getText()) #投诉状态
-                        table_output_page.append(table_output)
+                            issue_cate_value = category_list_new[issue_cate[issue_cate_i]]
+
+                            table_output = []
+                            table_output.append(Page_number) # page number
+                            table_output.append(table_result[i].contents[0].getText()) #投诉编号
+                            table_output.append(table_result[i].contents[1].getText()) #投诉品牌
+                            table_output.append(table_result[i].contents[2].getText()) #投诉车系
+                            table_output.append(table_result[i].contents[3].getText()) #投诉车型
+                            table_output.append(table_result[i].contents[4].getText()) #问题简述标题
+                            table_output.append('=hyperlink("{}")'.format(table_result[i].contents[4].contents[0].attrs['href'].replace('//', 'https://')))#问题简述链接
+                            table_output.append(YIS_duration[yis_i]) #问题出现时间
+
+                            table_output.append(issue_cate_value) #问题类型
+                            table_output.append(table_result[i].contents[6].getText()) #投诉时间
+                            table_output.append(table_result[i].contents[7].getText()) #投诉状态
+                            table_output_page.append(table_output)
 
                     outp = DataFrame(table_output_page,columns=columnNames)
                     print(outp)
@@ -210,24 +211,24 @@ else:
 
             table_output_page = []
             for i in range(1,claim_number_this_page,1):
-                table_output = []
-                table_output.append(Page_number) # page number
-                table_output.append(table_result[i].contents[0].getText()) #投诉编号
-                table_output.append(table_result[i].contents[1].getText()) #投诉品牌
-                table_output.append(table_result[i].contents[2].getText()) #投诉车系
-                table_output.append(table_result[i].contents[3].getText()) #投诉车型
-                table_output.append(table_result[i].contents[4].getText()) #问题简述标题
-                table_output.append('=hyperlink("{}")'.format(table_result[i].contents[4].contents[0].attrs['href'].replace('//', 'https://'))) #问题简述链接
-                table_output.append(YIS_duration[yis_i]) #问题出现时间
-
                 issue_cate = table_result[i].contents[5].getText().split(',')
-                issue_cate_value = ''
                 for issue_cate_i in range(0,len(issue_cate)):
-                    issue_cate_value = issue_cate_value + category_list_new[issue_cate[issue_cate_i]]
-                table_output.append(issue_cate_value) #问题类型
-                table_output.append(table_result[i].contents[6].getText()) #投诉时间
-                table_output.append(table_result[i].contents[7].getText()) #投诉状态
-                table_output_page.append(table_output)
+                    issue_cate_value = category_list_new[issue_cate[issue_cate_i]]
+
+                    table_output = []
+                    table_output.append(Page_number) # page number
+                    table_output.append(table_result[i].contents[0].getText()) #投诉编号
+                    table_output.append(table_result[i].contents[1].getText()) #投诉品牌
+                    table_output.append(table_result[i].contents[2].getText()) #投诉车系
+                    table_output.append(table_result[i].contents[3].getText()) #投诉车型
+                    table_output.append(table_result[i].contents[4].getText()) #问题简述标题
+                    table_output.append('=hyperlink("{}")'.format(table_result[i].contents[4].contents[0].attrs['href'].replace('//', 'https://'))) #问题简述链接
+                    table_output.append(YIS_duration[yis_i]) #问题出现时间
+
+                    table_output.append(issue_cate_value) #问题类型
+                    table_output.append(table_result[i].contents[6].getText()) #投诉时间
+                    table_output.append(table_result[i].contents[7].getText()) #投诉状态
+                    table_output_page.append(table_output)
 
             outp = DataFrame(table_output_page,columns=columnNames)
             print(outp)
@@ -261,24 +262,24 @@ else:
 
                         table_output_page = []
                         for i in range(1,claim_number_this_page,1):
-                            table_output = []
-                            table_output.append(Page_number) # page number
-                            table_output.append(table_result[i].contents[0].getText()) #投诉编号
-                            table_output.append(table_result[i].contents[1].getText()) #投诉品牌
-                            table_output.append(table_result[i].contents[2].getText()) #投诉车系
-                            table_output.append(table_result[i].contents[3].getText()) #投诉车型
-                            table_output.append(table_result[i].contents[4].getText()) #问题简述标题
-                            table_output.append('=hyperlink("{}")'.format(table_result[i].contents[4].contents[0].attrs['href'].replace('//', 'https://')))#问题简述链接
-                            table_output.append(YIS_duration[yis_i]) #问题出现时间
-
                             issue_cate = table_result[i].contents[5].getText().split(',')
-                            issue_cate_value = ''
                             for issue_cate_i in range(0,len(issue_cate)):
-                                issue_cate_value = issue_cate_value + category_list_new[issue_cate[issue_cate_i]]
-                            table_output.append(issue_cate_value) #问题类型
-                            table_output.append(table_result[i].contents[6].getText()) #投诉时间
-                            table_output.append(table_result[i].contents[7].getText()) #投诉状态
-                            table_output_page.append(table_output)
+                                issue_cate_value = category_list_new[issue_cate[issue_cate_i]]
+
+                                table_output = []
+                                table_output.append(Page_number) # page number
+                                table_output.append(table_result[i].contents[0].getText()) #投诉编号
+                                table_output.append(table_result[i].contents[1].getText()) #投诉品牌
+                                table_output.append(table_result[i].contents[2].getText()) #投诉车系
+                                table_output.append(table_result[i].contents[3].getText()) #投诉车型
+                                table_output.append(table_result[i].contents[4].getText()) #问题简述标题
+                                table_output.append('=hyperlink("{}")'.format(table_result[i].contents[4].contents[0].attrs['href'].replace('//', 'https://')))#问题简述链接
+                                table_output.append(YIS_duration[yis_i]) #问题出现时间
+
+                                table_output.append(issue_cate_value) #问题类型
+                                table_output.append(table_result[i].contents[6].getText()) #投诉时间
+                                table_output.append(table_result[i].contents[7].getText()) #投诉状态
+                                table_output_page.append(table_output)
 
                         outp = DataFrame(table_output_page,columns=columnNames)
                         print(outp)
