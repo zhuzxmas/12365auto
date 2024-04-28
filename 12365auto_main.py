@@ -111,8 +111,13 @@ def Get_Category(category_url, headerinfo):
     return category_list_new, category_list_new_short
 
 # To get the category list from website:
+print('\n')
+print('Please Wait ......\n')
+print('It is loading the category info for later processing...\n')
+print('No need from your side, just wait...\n')
 category_list_new, category_list_new_short = Get_Category(category_url='https://www.12365auto.com/js/cTypeInfo.js', headerinfo=headerinfo)
-
+print('\nDone. Now it will proceed...\n')
+print('================================\n')
 
 OEM_name = input('Please input only One (1) OEM Name, or input the OEM you want: \nThis is only for the output file name, no other usage.\n\n')
 print('\n')
