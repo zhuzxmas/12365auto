@@ -40,3 +40,8 @@ pyinstaller.exe  .\12365auto_main.spec
 with open(r'./_internal/category_list.json',encoding= 'utf-8') as ff:
 category_list = json.load(ff)
 ```
+
+### 将字符串 load 为 JSON 格式：
+```
+category_list = json.loads(res.text.split('= ')[-1]) # to load string to json, json.load is for file loading
+```

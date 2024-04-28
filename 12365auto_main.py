@@ -97,7 +97,7 @@ def Get_Category(category_url, headerinfo):
         res = session.get(category_url,headers=headerinfo,verify=False,timeout=10) #download above page, send it to res.
     res.raise_for_status()
     time.sleep(random.uniform(7, 13))
-    category_list = json.loads(res.text.split('= ')[-1])
+    category_list = json.loads(res.text.split('= ')[-1]) # to load string to json, json.load is for file loading
     category_list_new = {}
     category_list_new_short = {}
     for cate_i in range(0,len(category_list)):
