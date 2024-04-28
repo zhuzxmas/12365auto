@@ -5,7 +5,7 @@ a = Analysis(
     ['12365auto_main.py'],
     pathex=[],
     binaries=[],
-    datas=[('pacfile','.'),('category_list.json','.')],
+    datas=[('pacfile','.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
